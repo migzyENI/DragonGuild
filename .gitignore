@@ -1,0 +1,54 @@
+# DG Engine internal
+.unused/
+.rewrite/
+
+# Editor
+.kate-swp
+*.swp
+*.swo
+*~
+.#*
+\#*#
+
+# Build output
+build/
+*.o
+*.a
+*.so
+*.out
+
+# Compile database (generated)
+compile_commands.json
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# AI tools
+.claude/
+.cursor/
+.aider
+.aider.*
+.copilot/
+.github/copilot*
+
+# LSP / clangd
+.cache/
+.clangd
+
+# Environment
+.env
+.env.*
+
+# Logs
+*.log
+
+# IDE
+.vscode/
+.idea/
+*.user
+
+# Backup
+*.bak
+*.orig
