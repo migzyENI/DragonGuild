@@ -244,6 +244,24 @@ constexpr dg_qword MURMUR3_UNMIX_CONSTANT_2 = { .u64 = 0x9cb4b2f8129337dbULL };
 	return Value;
 }
 
+//
+//
+// SWAR byte-lane set membership ( computation-validity checks over packed byte sets ).
+//
+// haszero technique: Alan Mycroft, 1987 ( comp.arch newsgroup ); catalogued in Sean
+// Eron Anderson's "Bit Twiddling Hacks" ( graphics.stanford.edu/~seander/bithacks.html,
+// snippets public domain ). The byte search broadcast-XORs the probe onto every lane
+// so a matching lane collapses to zero, then zero-detects all lanes at once.
+
+[[nodiscard]] static inline bool dg_hash_swar_has_zero_byte32( dg_u32 Word ) {
+	return ( ( Word - 0x01010101u ) & ~ Word & 0x80808080u ) != 0u;
+}
+
+//Does ANY byte lane of Word equal Byte? One multiply, no loop, all four lanes at once.
+[[nodiscard]] static inline bool dg_hash_swar_has_byte32( dg_u32 Word, dg_byte Byte ) {
+	return dg_hash_swar_has_zero_byte32( Word ^ ( 0x01010101u * (dg_u32)Byte ) );
+}
+
 // EXPECTS: CAPACITY is Power of 2, MASK is (CAPACITY - 1).
 #define DG_HASH_MM3_LINEAR_PROBE_KEY(HASH_VAL, MASK, SLOT_VAR, ATTEMPT_VAR) \
 for (dg_u32 ATTEMPT_VAR##SLOT_VAR = 0, \

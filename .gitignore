@@ -1,5 +1,5 @@
 # DG Engine internal
-.unused/
+# .unused/
 .rewrite/
 
 # Editor
@@ -16,6 +16,7 @@ build/
 *.a
 *.so
 *.out
+.smokes/
 
 # Compile database (generated)
 compile_commands.json

@@ -73,6 +73,7 @@ typedef dg_u64  dg_inbytes;
 typedef dg_u32  dg_inbytes32;
 typedef dg_u16  dg_inwords16; // From RSM
 typedef dg_u32 dg_inwords32;
+typedef dg_u64 dg_inwords64;
 typedef dg_inwords32  dg_inwords;
 
 typedef uintptr_t dg_ptr;
@@ -275,6 +276,13 @@ DG_FN_LOAD(FunctionPtrTypeHandle, (VTablePtr)->Slots[(SlotIndex)])(__VA_ARGS__)
 	#define DG_NONNULL_ARGS(...)
 #endif
 */
+
+//
+//
+// Camoens
+
+typedef struct {} Camoens;
+
 
 //
 //
